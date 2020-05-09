@@ -17,8 +17,8 @@ export default function App() {
 
     }
     else if (store.songs !== [] && currentSong < store.songs.length - 1) {
+      setSong("https://assets.breatheco.de/apis/sound/" + store.songs[currentSong+1].url)
       setCurrentSong(currentSong + 1)
-      setSong("https://assets.breatheco.de/apis/sound/" + store.songs[currentSong].url)
     }
     else if (store.songs !== [] && currentSong === store.songs.length - 1) {
       setCurrentSong(0)
@@ -32,8 +32,9 @@ export default function App() {
 
     }
     else if (store.songs !== [] && currentSong > 0) {
+      setSong("https://assets.breatheco.de/apis/sound/" + store.songs[currentSong-1].url)
       setCurrentSong(currentSong - 1)
-      setSong("https://assets.breatheco.de/apis/sound/" + store.songs[currentSong].url)
+
     }
     else if (store.songs !== [] && currentSong === 0) {
       setCurrentSong(store.songs.length - 1)
