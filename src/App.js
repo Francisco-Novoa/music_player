@@ -9,6 +9,7 @@ export default function App() {
   const [song, setSong] = useState(null)
   const [currentSong, setCurrentSong] = useState(null)
   const player = useRef(null)
+  
   const getAllSongs = async (url) => {
     try {
       const all = await fetch(url, {

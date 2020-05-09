@@ -7,7 +7,7 @@ export default function Row(props){
     }
     return(
         <>
-        {   props.currentSong==props.i?     
+        {   props.currentSong===props.i?     
         <button className="list-group-item list-group-item-action list-group-item-dark bg-dark text-white"
         onClick={()=>{handleClick()}}
         >
