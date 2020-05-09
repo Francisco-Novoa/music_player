@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Row from "./row"
 
@@ -9,23 +8,10 @@ export default function App() {
   const [song, setSong] = useState(null)
   const [currentSong, setCurrentSong] = useState(null)
   const player = useRef(null)
-  
-  const getAllSongs = async (url) => {
-    try {
-      const all = await fetch(url, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      })
-      const data = await all.json()
-      setStore({ ...store, songs: data })
-      console.log(data)
-    }
-    catch (error) {
-      console.log(error)
-    }
-  }
+
+
   const handleNextSong = () => {
-    if (currentSong == null && store.songs !== []) {
+    if (currentSong === null && store.songs !== []) {
       setCurrentSong(0)
       setSong("https://assets.breatheco.de/apis/sound/" + store.songs[0].url)
 
@@ -34,13 +20,13 @@ export default function App() {
       setCurrentSong(currentSong + 1)
       setSong("https://assets.breatheco.de/apis/sound/" + store.songs[currentSong].url)
     }
-    else if (store.songs !== [] && currentSong == store.songs.length - 1) {
+    else if (store.songs !== [] && currentSong === store.songs.length - 1) {
       setCurrentSong(0)
       setSong("https://assets.breatheco.de/apis/sound/" + store.songs[0].url)
     }
   }
   const handlePreviousSong = () => {
-    if (currentSong == null && store.songs !== []) {
+    if (currentSong === null && store.songs !== []) {
       setCurrentSong(store.songs.length - 1)
       setSong("https://assets.breatheco.de/apis/sound/" + store.songs[0].url)
 
@@ -64,6 +50,19 @@ export default function App() {
     }
   }
   useEffect(() => {
+    const getAllSongs = async (url) => {
+      try {
+        const all = await fetch(url, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        })
+        const data = await all.json()
+        setStore({ ...store, songs: data })
+      }
+      catch (error) {
+        console.log(error)
+      }
+    }
     getAllSongs("https://assets.breatheco.de/apis/sound/songs")
   }, [])
   useEffect(() => {
