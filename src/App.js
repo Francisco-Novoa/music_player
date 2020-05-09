@@ -78,7 +78,7 @@ export default function App() {
       {/* list */}
       <div className="row">
         <div className="col">
-          <ul class="list-group">
+          <ul className="list-group">
             {
               store.songs !== [] ?
                 store.songs.map((elem, i) => {
@@ -95,9 +95,9 @@ export default function App() {
       </div>
       {/* controls */}
       <div className="row d-flex justify-content-between controls">
-        <div className="col-2"><i class="btn btn-block btn-dark fas fa-step-backward" onClick={() => { handlePreviousSong() }}></i></div>
-        <div className="col-2"><i class="btn btn-block btn-dark fas fa-play" onClick={() => { handlePlay() }}></i></div>
-        <div className="col-2"><i class="btn btn-block btn-dark fas fa-step-forward" onClick={() => { handleNextSong() }} ></i></div>
+        <div className="col-2"><i className="btn btn-block btn-dark fas fa-step-backward" onClick={() => { handlePreviousSong() }}></i></div>
+        <div className="col-2"><i className="btn btn-block btn-dark fas fa-play" onClick={() => { handlePlay() }}></i></div>
+        <div className="col-2"><i className="btn btn-block btn-dark fas fa-step-forward" onClick={() => { handleNextSong() }} ></i></div>
       </div>
     </div>
   )
