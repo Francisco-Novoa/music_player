@@ -88,7 +88,7 @@ export default function App() {
                 })
                 : <span>Cargando!!!</span>
             }
-            <audio ref={player} controls="true" ></audio>
+            <audio ref={player}  ></audio>
 
           </ul>
         </div>
