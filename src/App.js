@@ -9,7 +9,6 @@ export default function App() {
   const [currentSong, setCurrentSong] = useState(null)
   const player = useRef(null)
 
-
   const handleNextSong = () => {
     if (currentSong === null && store.songs !== []) {
       setCurrentSong(0)
@@ -25,6 +24,7 @@ export default function App() {
       setSong("https://assets.breatheco.de/apis/sound/" + store.songs[0].url)
     }
   }
+
   const handlePreviousSong = () => {
     if (currentSong === null && store.songs !== []) {
       setCurrentSong(store.songs.length - 1)
@@ -41,6 +41,7 @@ export default function App() {
       setSong("https://assets.breatheco.de/apis/sound/" + store.songs[currentSong].url)
     }
   }
+
   const handlePlay = () => {
     if (player.current.paused) {
       player.current.load()
@@ -50,6 +51,7 @@ export default function App() {
       player.current.pause()
     }
   }
+
   useEffect(() => {
     const getAllSongs = async (url) => {
       try {
@@ -66,6 +68,7 @@ export default function App() {
     }
     getAllSongs("https://assets.breatheco.de/apis/sound/songs")
   }, [])
+
   useEffect(() => {
     if (player !== null) {
       player.current.src = song
@@ -75,11 +78,15 @@ export default function App() {
   }, [currentSong])
 
   return (
+
     <div className="container-fluid">
+
       {/* list */}
+
       <div className="row">
         <div className="col">
           <ul className="list-group">
+
             {
               store.songs !== [] ?
                 store.songs.map((elem, i) => {
@@ -89,17 +96,21 @@ export default function App() {
                 })
                 : <span>Cargando!!!</span>
             }
-            <audio ref={player}  ></audio>
+
+            <audio ref={player} ></audio>
 
           </ul>
         </div>
       </div>
+
       {/* controls */}
+
       <div className="row d-flex justify-content-between controls">
         <div className="col-2"><i className="btn btn-block btn-dark fas fa-step-backward" onClick={() => { handlePreviousSong() }}></i></div>
         <div className="col-2"><i className="btn btn-block btn-dark fas fa-play" onClick={() => { handlePlay() }}></i></div>
         <div className="col-2"><i className="btn btn-block btn-dark fas fa-step-forward" onClick={() => { handleNextSong() }} ></i></div>
       </div>
+
     </div>
   )
 }
